@@ -1,6 +1,0 @@
-
-
-free(file_content);
-
-
-
