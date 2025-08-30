@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h> 
+//github
+#define R 67
 
 #define MY_ASSERT(E) if (! (E)) {printf("Error: in file  %s  line %d", __FILE__, __LINE__); exit(EXIT_FAILURE);}
 
