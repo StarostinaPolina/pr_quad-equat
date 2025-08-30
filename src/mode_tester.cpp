@@ -36,7 +36,8 @@ char* file_to_string(FILE * fp) {
     int count = fread(file_content, sizeof file_content[0], (size_t) file_size, fp);
 
 
-    if (count != file_size) return NULL;
+    if (count != file_size)
+        return NULL;
     
     return file_content;
 }
@@ -72,7 +73,7 @@ int skip_string_in_filestring(const char* str) {
 //! @note Подфункция для test_solve_equat()
 //-----------------------------------------------------------------------------------------------------------------------------------
 enum Messages is_end_of_string(const char* str) {
-    char c = NAN;
+    char c = 0;
 
     for (int i = 0; true; i++) {
         c = str[i];
@@ -168,19 +169,19 @@ enum Messages test_solve_equat(FILE * fp) {
           return NULL_FILE_MSG;
 
       struct Equat reference {
-        { NAN, NAN, NAN },
-        { ERR_SOLUT, NAN, NAN }
+        {NAN, NAN, NAN},
+        {ERR_SOLUT, NAN, NAN}
       };
 
     int int_SOLVES = -2;
-    int all_tests = NAN, succ_tests = 0;
+    int all_tests = -1, succ_tests = 0;
     char * content_file = NULL;
-    long pos = NAN;
-    int shift = NAN;
+    long pos = 0;
+    int shift = 0;
 
     content_file = file_to_string(fp);
 
-    printf("%s", content_file);
+    //printf("%s", content_file);
     pos = skip_string_in_filestring(content_file);
 
     
@@ -189,7 +190,7 @@ enum Messages test_solve_equat(FILE * fp) {
 
     pos += shift;
 
-    if (isnan(all_tests))
+    if (isnan(-1))
           return FAILURE_MSG;
 
 

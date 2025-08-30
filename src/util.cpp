@@ -17,8 +17,8 @@
 
 
 void eat_left_string(FILE * fp) {
-    char c = NAN;
-    int i = NAN;
+    char c = 0;
+    
     c = fgetc(fp);
     while (c !='\n' &&  c != EOF)
          c = fgetc(fp);

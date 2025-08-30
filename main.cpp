@@ -3,47 +3,54 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h> 
-//github
-#define R 67
 
-#define MY_ASSERT(E) if (! (E)) {printf("Error: in file  %s  line %d", __FILE__, __LINE__); exit(EXIT_FAILURE);}
+#define MY_ASSERT(E) \
+if (! (E)) {\
+printf("Error: in file  %s  line %d", __FILE__, __LINE__);\
+exit(EXIT_FAILURE);}
 
+#include "color.h"
 #include "mode_solver.h"
 #include "mode_tester.h"
 
 
 int main(const int argc, const char* argv[]) {
   
-   MY_ASSERT((argc == 3) || (argc == 2)); //TODO: убрать ассерт, нужна обработка ввода пользоватлея
+   if (! (argc == 3) || (argc == 2)) {
+      printf("Command must be like this: \"file.exe  mode  file_test.txt (for tester mode)\"");
+      return 1;
+   } 
 
-    int ret = NAN;
+   //MY_ASSERT((argc == 3) || (argc == 2)); //TODO: убрать ассерт, нужна обработка ввода пользоватлея
+
+    int ret = 5;
 
       enum Modes mode = cmd_select_mode(argv[1]);
 
       switch (mode) {
 
         case SOLVER:
-           printf("\n\x1b[38;2;255;255;102mSolver mode selected:\n\n");
+           printf("\n" YELLOW "Solver mode selected:\n\n");
            ret = mode_solver();
            break;
 
         case TESTER:
-           printf("\n\x1b[38;2;102;255;225mTester mode selected:\n\n");
+           printf("\n" BLUE "Tester mode selected:\n\n");
            ret = mode_tester(argv[2]);
            break;
 
         case MAIN_QUIT:
-           printf("\n\x1b[38;2;255;102;178mFinal");
+           printf("\n" PURPLE "Final");
            ret = 0;
            break;
 
         case INC_INPUT:
-           printf("\n\x1b[38;2;255;178;102mIncorrect input. Try again");
+           printf("\n" ORANGE "Incorrect mode. Try again");
            break;
 
        }
     
-    printf("\n\n\x1b[38;2;255;0;0mCOMMIT GITHUB\x1b[0;2;0;0;0m\n\n");
+    printf("\n\n" RED "COMMIT GITHUB" WHITE "\n\n");
 
     return ret;
 }
